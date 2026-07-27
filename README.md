@@ -25,10 +25,10 @@
 - **置信度声明**：推测性结论必须标注置信度，禁止伪确定。
 - **结束自检**：任务完成后强制自检并主动暴露疑虑与未覆盖点。
 
-## 使用方法（WorkBuddy）
+## 使用方法
 
-1. 确保技能已安装：`~/.workbuddy/skills/anti-shallow/`（或项目级 `.workbuddy/skills/anti-shallow/`）。
-2. 对话中自然表达深入分析意图，或显式说「上 anti-shallow 规则」。
+1. 将 `SKILL.md`（及可选的 `assets/`、`references/`、`scripts/`）接入任意 AI 智能体的技能/规则系统。
+2. 在对话中自然表达深入分析意图，或显式说「上 anti-shallow 规则」。
 3. 需要关闭时直接说「关掉规则」，底线规则仍生效。
 
 ## 许可证
