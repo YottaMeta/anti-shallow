@@ -7,7 +7,7 @@
   "files": ["SKILL.md", "LICENSE", "README.md", "install.sh", "references", "scripts", "assets"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/YottaMeta/anti-shallow.git"
+    "url": "git+https://github.com/YottaMeta/anti-shallow.git"
   },
   "publishConfig": {
     "access": "public"
