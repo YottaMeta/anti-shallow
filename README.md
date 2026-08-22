@@ -51,7 +51,7 @@ bash install.sh --dir /path/to/skills
 | opencode | `%USERPROFILE%\.config\opencode\skills\anti-shallow\` |
 | Gemini | `%USERPROFILE%\.gemini\skills\anti-shallow\` |
 | WorkBuddy | `%USERPROFILE%\.workbuddy\skills\anti-shallow\` |
-| 通用约定 | `%USERPROFILE%\.agents\skills\anti-shallow\`（Cursor/Codex/Copilot 等会读取，**但不是所有智能体都有**，别默认它存在） |
+| 通用约定 | `%USERPROFILE%\.agents\skills\anti-shallow\`（通用目录约定，Cursor / Codex / Copilot 等智能体可识别） |
 
 > 不确定目录？用 `--dir` 指定路径，或让该智能体自己安装（如 npx skills）。各智能体目录以官方文档为准。
 ## 核心规则（节选）
