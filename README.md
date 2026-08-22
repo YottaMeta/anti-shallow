@@ -18,6 +18,30 @@
 
 规则可临时关闭（「关掉规则 / 暂停规则」），但「信息不足须明说」与「打断必重来」为**不可关闭的底线**。
 
+## 安装
+
+### Claude Code
+```bash
+mkdir -p ~/.claude/skills && cp -r anti-shallow ~/.claude/skills/
+```
+
+### Cursor
+复制到项目 `.cursor/skills/anti-shallow/`（也认 `.agents/skills/`）。
+
+### Codex
+复制到 `~/.codex/skills/anti-shallow/`。
+
+### 通用（install.sh）
+```bash
+bash install.sh        # 自动安装到检测到的项目级智能体目录
+bash install.sh -g     # 安装到用户级目录
+```
+
+### npx skills
+```bash
+npx skills add YottaMeta/anti-shallow/tree/main/SKILL.md
+```
+
 ## 核心规则（节选）
 
 - **R001 强制先分析，再执行**：代码修改 / Bug 排查 / 架构重构 / 文档写作 / 数据分析 / 开放问答，必须先输出分析（根因、受影响范围、方案取舍、局限性），不得直接产出。
@@ -25,12 +49,16 @@
 - **置信度声明**：推测性结论必须标注置信度，禁止伪确定。
 - **结束自检**：任务完成后强制自检并主动暴露疑虑与未覆盖点。
 
-## 使用方法
+## 使用示例
 
-1. 将本仓库的 `SKILL.md` 接入任意 AI 智能体的技能/规则系统。
+1. 将本仓库的 `SKILL.md` 接入任意 AI 智能体的技能/规则系统（见上方安装）。
 2. 在对话中自然表达深入分析意图，或显式说「上 anti-shallow 规则」。
 3. 需要关闭时直接说「关掉规则」，底线规则仍生效。
 
+## 开发与校验
+
+本项目内运行：`python tools/validate-skill.py anti-shallow`。
+
 ## 许可证
 
-本项目基于 [LICENSE](./LICENSE) 文件中的条款发布。
+MIT © YottaMeta —— 详见 [LICENSE](./LICENSE)。
