@@ -20,26 +20,40 @@
 
 ## 安装
 
-### Claude Code
+> 先拿到技能文件：`git clone https://github.com/YottaMeta/anti-shallow.git`（或 GitHub 页面 Download ZIP，或 `npm pack @yottameta/anti-shallow` 解包），然后在技能文件夹内执行安装命令。
+
+### Linux / macOS
 ```bash
-mkdir -p ~/.claude/skills && cp -r anti-shallow ~/.claude/skills/
+bash install.sh -g    # 用户级：~/.claude/skills、~/.codex/skills、~/.cursor/skills、~/.config/agents/skills
+bash install.sh       # 项目级：在项目目录内执行，自动检测 .claude/skills 等
 ```
 
-### Cursor
-复制到项目 `.cursor/skills/anti-shallow/`（也认 `.agents/skills/`）。
-
-### Codex
-复制到 `~/.codex/skills/anti-shallow/`。
-
-### 通用（install.sh）
+### Windows（Git Bash）
 ```bash
-bash install.sh        # 自动安装到检测到的项目级智能体目录
-bash install.sh -g     # 安装到用户级目录
+bash install.sh -g    # 效果同上，~ = C:\Users\<你的用户名>
+```
+
+### Windows（无 Git Bash）——手动复制
+把整个 `anti-shallow` 文件夹复制到目标 skills 目录：
+
+| 智能体 | 用户级目录 |
+|---|---|
+| Codex | `%USERPROFILE%\.codex\skills\anti-shallow\` |
+| Claude Code | `%USERPROFILE%\.claude\skills\anti-shallow\` |
+| Cursor | `%USERPROFILE%\.cursor\skills\anti-shallow\` |
+| 通用 | `%USERPROFILE%\.agents\skills\anti-shallow\` |
+
+### npm 双源
+npm 包是分发源（文件与 GitHub 一致）：
+```bash
+npm pack @yottameta/anti-shallow
+tar -xzf yottameta-anti-shallow-1.1.1.tgz
+cd package && bash install.sh -g
 ```
 
 ### npx skills
 ```bash
-npx skills add YottaMeta/anti-shallow/tree/main/SKILL.md
+npx skills add YottaMeta/anti-shallow -g    # 用户级；Windows 建议加 --copy（复制而非符号链接）
 ```
 
 ## 核心规则（节选）
