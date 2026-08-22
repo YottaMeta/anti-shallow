@@ -5,10 +5,19 @@ set -euo pipefail
 SKILL_NAME="anti-shallow"
 SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Git Bash / MSYS：pwd 可能返回 /tmp/... 这类 MSYS 路径，外部 cp 的运行时映射
+# 可能与 bash 不一致导致找不到源目录；转成 Windows 风格路径可消除该问题。
+case "$(uname -s)" in
+  MINGW*|MSYS*)
+    SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -W)"
+    ;;
+esac
+
 install_to() {
   local dest="$1"
   mkdir -p "$dest/$SKILL_NAME"
   cp -r "$SOURCE_DIR/." "$dest/$SKILL_NAME/"
+  rm -rf "$dest/$SKILL_NAME/.git"   # 从 git clone 安装时不带 .git
   echo "installed -> $dest/$SKILL_NAME"
 }
 
