@@ -40,14 +40,24 @@ bash install.sh --dir /path/to/skills
 > 覆盖 8 类智能体：Claude Code / Cursor / Codex / Windsurf / opencode / Gemini / WorkBuddy / 通用 Agent。Windows 用户：装有 Git Bash 即可用；否则用方式三手动复制。
 
 ### 方式三：手动复制
-把整个 `anti-shallow` 文件夹复制到目标 skills 目录：
+把整个 `anti-shallow` 文件夹复制到目标智能体的 skills 目录。常见位置（用户级；Windows 用 `%USERPROFILE%`，Linux/macOS 用 `~`）：
 
-| 智能体 | 用户级目录 |
+| 智能体 | 目录 |
 |---|---|
 | Codex | `%USERPROFILE%\.codex\skills\anti-shallow\` |
 | Claude Code | `%USERPROFILE%\.claude\skills\anti-shallow\` |
-| Cursor | `%USERPROFILE%\.cursor\skills\anti-shallow\` |
-| 通用 | `%USERPROFILE%\.agents\skills\anti-shallow\` |
+| Cursor | `%USERPROFILE%\.cursor\skills\anti-shallow\`（项目级 `.cursor/skills/`） |
+| Windsurf | `%USERPROFILE%\.windsurf\skills\anti-shallow\` |
+| opencode | `%USERPROFILE%\.config\opencode\skills\anti-shallow\` |
+| Gemini | `%USERPROFILE%\.gemini\skills\anti-shallow\` |
+| WorkBuddy | `%USERPROFILE%\.workbuddy\skills\anti-shallow\` |
+| 通用约定 | `%USERPROFILE%\.agents\skills\anti-shallow\`（Cursor/Codex/Copilot 等会读取，**但不是所有智能体都有**，别默认它存在） |
+
+> **不确定技能目录在哪？**
+> 1. 查该智能体官方文档（搜「skills directory」+ 智能体名）。
+> 2. 看它是否已装过其他技能，复制到同一目录即可。
+> 3. 搜索本机：Windows `Get-ChildItem $HOME -Directory -Recurse -Force -Filter skills`；Linux/macOS `find ~ -type d -name skills 2>/dev/null`。
+> 4. 都找不到？用方式一/方式二的 `--dir` 指定目录，或把文件夹放到智能体可读取的位置并在其配置里启用。
 ## 核心规则（节选）
 
 - **R001 强制先分析，再执行**：代码修改 / Bug 排查 / 架构重构 / 文档写作 / 数据分析 / 开放问答，必须先输出分析（根因、受影响范围、方案取舍、局限性），不得直接产出。
