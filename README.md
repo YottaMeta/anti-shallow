@@ -20,20 +20,25 @@
 
 ## 安装
 
-> 先拿到技能文件：`git clone https://github.com/YottaMeta/anti-shallow.git`（或 GitHub 页面 Download ZIP，或 `npm pack @yottameta/anti-shallow` 解包），然后在技能文件夹内执行安装命令。
+三种方式任选其一，技能文件统一从 **npm** 获取（GitHub 无代理时较慢，npm 可配国内镜像加速）。
 
-### Linux / macOS
+### 方式一：npm（推荐）
+```bash
+# 国内加速（可选）：npm config set registry https://registry.npmmirror.com
+npm pack @yottameta/anti-shallow
+tar -xzf yottameta-anti-shallow-1.1.2.tgz
+cd package && bash install.sh -g
+```
+
+### 方式二：install.sh 一键安装
+获取技能文件夹后（`npm pack` 解包或 `git clone`），进入技能文件夹：
 ```bash
 bash install.sh -g    # 用户级：~/.claude/skills、~/.codex/skills、~/.cursor/skills、~/.config/agents/skills
 bash install.sh       # 项目级：在项目目录内执行，自动检测 .claude/skills 等
 ```
+> Windows 用户：装有 Git Bash 即可用；否则用方式三手动复制。
 
-### Windows（Git Bash）
-```bash
-bash install.sh -g    # 效果同上，~ = C:\Users\<你的用户名>
-```
-
-### Windows（无 Git Bash）——手动复制
+### 方式三：手动复制
 把整个 `anti-shallow` 文件夹复制到目标 skills 目录：
 
 | 智能体 | 用户级目录 |
@@ -42,20 +47,6 @@ bash install.sh -g    # 效果同上，~ = C:\Users\<你的用户名>
 | Claude Code | `%USERPROFILE%\.claude\skills\anti-shallow\` |
 | Cursor | `%USERPROFILE%\.cursor\skills\anti-shallow\` |
 | 通用 | `%USERPROFILE%\.agents\skills\anti-shallow\` |
-
-### npm 双源
-npm 包是分发源（文件与 GitHub 一致）：
-```bash
-npm pack @yottameta/anti-shallow
-tar -xzf yottameta-anti-shallow-1.1.1.tgz
-cd package && bash install.sh -g
-```
-
-### npx skills
-```bash
-npx skills add YottaMeta/anti-shallow -g    # 用户级；Windows 建议加 --copy（复制而非符号链接）
-```
-
 ## 核心规则（节选）
 
 - **R001 强制先分析，再执行**：代码修改 / Bug 排查 / 架构重构 / 文档写作 / 数据分析 / 开放问答，必须先输出分析（根因、受影响范围、方案取舍、局限性），不得直接产出。
