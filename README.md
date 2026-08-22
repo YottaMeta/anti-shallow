@@ -22,21 +22,21 @@
 
 三种方式任选其一，技能文件统一从 **npm** 获取（GitHub 无代理时较慢，npm 可配国内镜像加速）。
 
-### 方式一：npm（推荐）
+### 方式一：npm（推荐，一行安装）
 ```bash
 # 国内加速（可选）：npm config set registry https://registry.npmmirror.com
-npm pack @yottameta/anti-shallow
-tar -xzf yottameta-anti-shallow-1.1.2.tgz
-cd package && bash install.sh -g
+npx -y @yottameta/anti-shallow -g
 ```
+> 想手动拿文件也可 `npm pack @yottameta/anti-shallow` 解包后按方式二/三安装。
 
 ### 方式二：install.sh 一键安装
 获取技能文件夹后（`npm pack` 解包或 `git clone`），进入技能文件夹：
 ```bash
-bash install.sh -g    # 用户级：~/.claude/skills、~/.codex/skills、~/.cursor/skills、~/.config/agents/skills
-bash install.sh       # 项目级：在项目目录内执行，自动检测 .claude/skills 等
+bash install.sh -g    # 用户级；bash install.sh --list 查看全部目录
+bash install.sh       # 项目级：自动检测已存在的 .claude/.cursor/.agents/.codex/.windsurf/.opencode/.gemini/.workbuddy/skills
+bash install.sh --dir /path/to/skills
 ```
-> Windows 用户：装有 Git Bash 即可用；否则用方式三手动复制。
+> 覆盖 8 类智能体：Claude Code / Cursor / Codex / Windsurf / opencode / Gemini / WorkBuddy / 通用 Agent。Windows 用户：装有 Git Bash 即可用；否则用方式三手动复制。
 
 ### 方式三：手动复制
 把整个 `anti-shallow` 文件夹复制到目标 skills 目录：
