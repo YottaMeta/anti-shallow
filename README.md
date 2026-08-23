@@ -28,32 +28,43 @@
 npx -y @yottameta/anti-shallow -g
 npx -y @yottameta/anti-shallow --dir <你的技能目录>   # 任意智能体：指定目录安装
 ```
-> 智能体不在预置列表里？用 `--dir` 指定它的 skills 目录，或手动复制（方式三）。想手动拿文件也可 `npm pack @yottameta/anti-shallow` 解包后按方式二/三安装。
+> 智能体不在预置列表里？用 `--dir` 指定它的 skills 目录，或手动复制（方式三）。`--list` 可查看各智能体对应的默认目录。想手动拿文件也可 `npm pack @yottameta/anti-shallow` 解包后按方式二/三安装。
 
 ### 方式二：install.sh 一键安装
 获取技能文件夹后（`npm pack` 解包或 `git clone`），进入技能文件夹：
 ```bash
 bash install.sh -g    # 用户级；bash install.sh --list 查看全部目录
-bash install.sh       # 项目级：自动检测已存在的 .claude/.cursor/.agents/.codex/.windsurf/.opencode/.gemini/.workbuddy/skills
+bash install.sh --agent codex   # 指定智能体（--list 可查看可用项）
+bash install.sh       # 项目级：自动检测已存在的 .claude/.cursor/.codex 等 skills 目录
 bash install.sh --dir /path/to/skills
 ```
-> 覆盖 8 类智能体：Claude Code / Cursor / Codex / Windsurf / opencode / Gemini / WorkBuddy / 通用 Agent。Windows 用户：装有 Git Bash 即可用；否则用方式三手动复制。
+> 覆盖 17 类智能体，含国内 Trae / Qwen / Comate / CodeBuddy / Kimi。Windows 用户：装有 Git Bash 即可用；否则用方式三手动复制。
 
 ### 方式三：手动复制
 把整个 `anti-shallow` 文件夹复制到目标智能体的 skills 目录。常见位置（用户级；Windows 用 `%USERPROFILE%`，Linux/macOS 用 `~`）：
 
-| 智能体 | 目录 |
-|---|---|
-| Codex | `%USERPROFILE%\.codex\skills\anti-shallow\` |
-| Claude Code | `%USERPROFILE%\.claude\skills\anti-shallow\` |
-| Cursor | `%USERPROFILE%\.cursor\skills\anti-shallow\`（项目级 `.cursor/skills/`） |
-| Windsurf | `%USERPROFILE%\.windsurf\skills\anti-shallow\` |
-| opencode | `%USERPROFILE%\.config\opencode\skills\anti-shallow\` |
-| Gemini | `%USERPROFILE%\.gemini\skills\anti-shallow\` |
-| WorkBuddy | `%USERPROFILE%\.workbuddy\skills\anti-shallow\` |
-| 通用约定 | `%USERPROFILE%\.agents\skills\anti-shallow\`（通用目录约定，Cursor / Codex / Copilot 等智能体可识别） |
+| 智能体 | 用户级目录 | 项目级目录 |
+|---|---|---|
+| Codex | `%USERPROFILE%\.codex\skills\anti-shallow\` | `.codex\skills\` |
+| Claude Code | `%USERPROFILE%\.claude\skills\anti-shallow\` | `.claude\skills\` |
+| Cursor | `%USERPROFILE%\.cursor\skills\anti-shallow\` | `.cursor\skills\` |
+| Windsurf | `%USERPROFILE%\.codeium\windsurf\skills\anti-shallow\` | `.windsurf\skills\` |
+| opencode | `%USERPROFILE%\.config\opencode\skills\anti-shallow\` | `.opencode\skills\` |
+| Gemini | `%USERPROFILE%\.gemini\skills\anti-shallow\` | `.gemini\skills\` |
+| Goose | `%USERPROFILE%\.config\goose\skills\anti-shallow\` | `.goose\skills\` |
+| Amp | `%USERPROFILE%\.config\agents\skills\anti-shallow\` | `.agents\skills\` |
+| Kiro | `%USERPROFILE%\.kiro\skills\anti-shallow\` | `.kiro\skills\` |
+| WorkBuddy | `%USERPROFILE%\.workbuddy\skills\anti-shallow\` | `.workbuddy\skills\` |
+| Trae Code CLI | `%USERPROFILE%\.traecli\skills\anti-shallow\` | `.traecli\skills\` |
+| Trae IDE（国内） | `%USERPROFILE%\.trae-cn\skills\anti-shallow\` | `.trae\skills\` |
+| Qwen Code | `%USERPROFILE%\.qwen\skills\anti-shallow\` | `.qwen\skills\` |
+| Comate | `%USERPROFILE%\.comate\skills\anti-shallow\` | `.comate\skills\` |
+| CodeBuddy | `%USERPROFILE%\.codebuddy\skills\anti-shallow\` | `.codebuddy\skills\` |
+| Kimi | `%USERPROFILE%\.kimi\skills\anti-shallow\` | `.kimi\skills\` |
+| 通用 AGENTS.md | `%USERPROFILE%\.agents\skills\anti-shallow\` | `.agents\skills\` |
 
-> 不确定目录？用 `--dir` 指定路径，或让该智能体自己安装（如 npx skills）。各智能体目录以官方文档为准。
+> Codex 默认目录若设置了环境变量 `CODEX_HOME`，以该变量为准；opencode 若设置 `XDG_CONFIG_HOME` 同理。`.agents\skills` 并非通用目录，仅 OpenCode / Cursor / Cline / Amp / Kimi / Gemini CLI / GitHub Copilot 等会读取，**Claude Code 与 Codex 默认不读**。不确定时用 `--dir` 指定，或让该智能体自行安装。
+
 ## 核心规则（节选）
 
 - **R001 强制先分析，再执行**：代码修改 / Bug 排查 / 架构重构 / 文档写作 / 数据分析 / 开放问答，必须先输出分析（根因、受影响范围、方案取舍、局限性），不得直接产出。
