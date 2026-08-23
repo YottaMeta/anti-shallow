@@ -1,7 +1,19 @@
-# anti-shallow · 防 AI 敷衍规则引擎
+<p align="center">
+  <img src="assets/banner.png" alt="anti-shallow banner" width="100%" />
+</p>
 
-> 一套通用的「防 AI 敷衍」规则引擎技能，适用于开发、写作、数据分析、架构设计等所有场景。
-> 它通过「先分析 · 再执行 · 后自检」的强制流程，遏制表面化输出。
+<h1 align="center">anti-shallow · 防 AI 敷衍规则引擎</h1>
+
+<p align="center">一套通用的「防 AI 敷衍」规则引擎技能，适用于开发、写作、数据分析、架构设计等所有场景。它通过「先分析 · 再执行 · 后自检」的强制流程，遏制表面化输出。</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue" /></a>
+  <a href="https://agentskills.io/"><img alt="Standard: agentskills.io" src="https://img.shields.io/badge/standard-agentskills.io-orange" /></a>
+  <a href="https://www.npmjs.com/package/@yottameta/anti-shallow"><img alt="npm package" src="https://img.shields.io/npm/v/@yottameta/anti-shallow" /></a>
+  <a href="https://github.com/YottaMeta/anti-shallow"><img alt="GitHub stars" src="https://img.shields.io/github/stars/YottaMeta/anti-shallow" /></a>
+  <a href="https://github.com/YottaMeta/anti-shallow/commits/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/YottaMeta/anti-shallow" /></a>
+  <a href="https://github.com/YottaMeta/anti-shallow"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen" /></a>
+</p>
 
 ## 这是什么
 

@@ -2,14 +2,14 @@
 name: anti-shallow
 description: "防敷衍规则引擎。当检测到用户需要深入分析、全链路验证、根因追溯、严谨执行、细致检查时激活规则；此外，任何达到 L3（复杂）及以上复杂度的任务也会自动适用本规则，无需用户显式唤醒。触发：防敷衍、敷衍、灌水、糊弄、水货、深入、严谨、细致、仔细、全链路、根因、审视、反思、自我检查、追溯、验证、证明、认真、别糊弄、上规则、不要敷衍、恢复规则、加载防敷衍"
 agent_created: true
-version: 1.2.3
+version: 1.2.4
 license: MIT
 ---
 
 # 防敷衍规则引擎
 
 > 通用防 AI 敷衍规则，适用于所有场景（开发、写作、分析、设计、问答等）。
-> **版本**：1.2.3 | **最后更新**：2026-08-23
+> **版本**：1.2.4 | **最后更新**：2026-08-24
 
 ---
 
@@ -357,4 +357,5 @@ IF 用户显式指令 AND 指令与规则冲突：
 | 1.2.0 | 2026-08-23 | 智能体表扩充：新增国内 Trae / Trae-CN / Qwen / Comate / CodeBuddy / Kimi；修正 Windsurf（~/.codeium/windsurf/skills）与 Kiro（~/.kiro/skills）默认目录；install.sh/install.js 同步；无技能逻辑变更 |
 | 1.2.1 | 2026-08-23 | --list 不再解析/暴露本机 CODEX_HOME / XDG_CONFIG_HOME 路径，改显示通用默认目录；无技能逻辑变更 |
 | 1.2.2 | 2026-08-23 | --list 改为与 README 方式三一致：Windows 用 %USERPROFILE%，Linux/macOS 用 ~，去除 $CODEX_HOME / $XDG_CONFIG_HOME 变量显示；无技能逻辑变更 |
+| 1.2.4 | 2026-08-24 | README 顶部加 hero banner + 可点击徽章行，标题/副标题居中；无技能逻辑变更 |
 | 1.2.3 | 2026-08-23 | 修复兜底分支：install.sh auto-detect 与 bin/install.js PROJECT_DIRS 从旧 15 项升级为 17 项规范目录（.config/goose/skills、.config/agents/skills、.codeium/windsurf/skills、.trae-cn/skills、.kimi/skills），与 --agent/--list/-g 主路径及 template 一致；无技能逻辑变更 |
