@@ -1,6 +1,6 @@
 {
   "name": "@yottameta/anti-shallow",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "防敷衍规则引擎：当检测到深入分析、全链路验证、根因追溯、严谨执行、细致检查意图时强制先分析再执行后自检（L3+ 任务自动适用）。",
   "license": "MIT",
   "keywords": [
