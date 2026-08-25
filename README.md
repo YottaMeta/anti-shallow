@@ -2,7 +2,7 @@
   <img src="assets/banner.png" alt="yotta-anti-shallow banner" width="100%" />
 </p>
 
-<h1 align="center">yotta-anti-shallow · 防 AI 敷衍规则引擎</h1>
+<h1 align="center">yotta-anti-shallow · 元谨</h1>
 
 <p align="center">一套通用的「防 AI 敷衍」规则引擎技能：<b>先分析 · 再执行 · 后自检</b>，遏制表面化输出。适用于开发、写作、数据分析、架构设计等所有需要正确性与严谨性的场景。</p>
 <p align="center">检测到深入分析 / 全链路验证 / 根因追溯 / 严谨执行意图时自动激活；任务达到 L3（复杂）及以上也自动适用——<b>不靠关键词碰运气，靠任务性质判定</b>。</p>
