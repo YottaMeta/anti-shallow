@@ -1,7 +1,7 @@
 {
   "name": "@yottameta/yotta-anti-shallow",
-  "version": "1.3.2",
-  "description": "防敷衍规则引擎：当检测到深入分析、全链路验证、根因追溯、严谨执行、细致检查意图时强制先分析再执行后自检（L3+ 任务自动适用）。",
+  "version": "1.3.3",
+  "description": "Anti-shallow AI output rules engine: force analyze-first / execute-after / self-check, curbing superficial output. Activates on intent for deep analysis, end-to-end verification, root-cause tracing, rigorous execution, meticulous checking; also applies automatically to any task at L3 (complex) and above.",
   "license": "MIT",
   "keywords": [
     "agent-skills",
@@ -13,6 +13,7 @@
     "SKILL.md",
     "LICENSE",
     "README.md",
+    "README.zh-CN.md",
     "install.sh",
     "references",
     "scripts",
