@@ -44,7 +44,7 @@ It is not a platform-specific feature; it is an agent-agnostic rule text: drop i
 | **Explicit instruction priority** | if user clearly says “no analysis”, comply and explicitly mark “rules temporarily adjusted”, without arguing |
 | **Clear boundary** | pure creative / chat / results-only / pure factual retrieval are not forced to apply, avoiding formalistic burden |
 | **Lightweight zero-dependency** | pure rule text, no daemon / no database / no injection; any agent supporting Agent Skills is install-and-use |
-| **Ecosystem distribution** | GitHub + npm dual-source synced; three install methods (npx / install.sh / manual copy) covering 17+ agent directories |
+| **Ecosystem distribution** | GitHub + npm dual-source synced; four install methods (npx / git clone / Download ZIP / install.sh) covering 17+ agent directories |
 
 ## Rules (R001–R008)
 
@@ -78,56 +78,42 @@ Use it when the user needs deep analysis, end-to-end verification, root-cause tr
 
 ## Installation
 
-Pick any of the three methods; skill files are always fetched from **npm** (GitHub can be slow without a proxy; npm supports mirrors).
+Pick any of the four methods below; the order is the recommended priority. Skill files always come from **npm** (GitHub can be slow without a proxy; npm supports mirrors).
 
-### Method 1: npm (recommended, one-liner)
-```bash
+### Method 1: npm one-liner (recommended)
+
+```text
 # Optional China mirror: npm config set registry https://registry.npmmirror.com
-npx -y @yottameta/yotta-anti-shallow -g
-npx -y @yottameta/yotta-anti-shallow --dir <your skills dir>   # any agent: install to a custom directory
+npx -y @yottameta/yotta-anti-shallow --agent <agent-name>      # install to the agent's default user-level skills dir
+npx -y @yottameta/yotta-anti-shallow --dir <your-skills-dir>   # point to the skills dir itself (e.g. ~/.codex/skills)
 ```
-> Agent not in the preset list? Use `--dir` to point at its skills directory, or copy manually (Method 3). `--list` shows the default directory of each agent. To grab the files yourself, run `npm pack @yottameta/yotta-anti-shallow` and unpack, then use Method 2 or 3.
 
-### Method 2: install.sh
-After obtaining the skill folder (`npm pack` unpack or `git clone`), enter the folder:
-```bash
-bash install.sh -g    # user-level; bash install.sh --list shows all directories
-bash install.sh --agent codex   # a specific agent (see --list)
-bash install.sh       # project-level: auto-detect existing skills directories
-bash install.sh --dir /path/to/skills
+- `--agent <name>` installs to that agent's default user-level directory; `--list` shows each agent's default directory.
+- `--dir <path>` installs to the given directory; for agents not in the preset list, point `--dir` at their skills directory.
+- If the mirror has not synced the new package (404): add `--registry=https://registry.npmjs.org/` (a proxy may be needed in China), or wait for the mirror cache.
+
+### Method 2: git clone (developers / git available)
+
+```text
+git clone https://github.com/YottaMeta/yotta-anti-shallow.git <your-skills-dir>/yotta-anti-shallow
 ```
-> Covers 17 agent families, including Trae / Qwen / Comate / CodeBuddy / Kimi.
 
-### Method 3: manual copy
-Copy the whole `yotta-anti-shallow` folder into the target agent's skills directory. Common user-level locations (`%USERPROFILE%` on Windows, `~` on Linux/macOS):
+### Method 3: GitHub Download ZIP (manual / no git)
 
-| Agent | User-level directory | Project-level directory |
-|---|---|---|
-| Codex | `%USERPROFILE%\.codex\skills\yotta-anti-shallow\` | `.codex\skills\` |
-| Claude Code | `%USERPROFILE%\.claude\skills\yotta-anti-shallow\` | `.claude\skills\` |
-| Cursor | `%USERPROFILE%\.cursor\skills\yotta-anti-shallow\` | `.cursor\skills\` |
-| Windsurf | `%USERPROFILE%\.codeium\windsurf\skills\yotta-anti-shallow\` | `.windsurf\skills\` |
-| opencode | `%USERPROFILE%\.config\opencode\skills\yotta-anti-shallow\` | `.opencode\skills\` |
-| Gemini | `%USERPROFILE%\.gemini\skills\yotta-anti-shallow\` | `.gemini\skills\` |
-| Goose | `%USERPROFILE%\.config\goose\skills\yotta-anti-shallow\` | `.goose\skills\` |
-| Amp | `%USERPROFILE%\.config\agents\skills\yotta-anti-shallow\` | `.agents\skills\` |
-| Kiro | `%USERPROFILE%\.kiro\skills\yotta-anti-shallow\` | `.kiro\skills\` |
-| WorkBuddy | `%USERPROFILE%\.workbuddy\skills\yotta-anti-shallow\` | `.workbuddy\skills\` |
-| Trae Code CLI | `%USERPROFILE%\.traecli\skills\yotta-anti-shallow\` | `.traecli\skills\` |
-| Trae IDE (CN) | `%USERPROFILE%\.trae-cn\skills\yotta-anti-shallow\` | `.trae\skills\` |
-| Qwen Code | `%USERPROFILE%\.qwen\skills\yotta-anti-shallow\` | `.qwen\skills\` |
-| Comate | `%USERPROFILE%\.comate\skills\yotta-anti-shallow\` | `.comate\skills\` |
-| CodeBuddy | `%USERPROFILE%\.codebuddy\skills\yotta-anti-shallow\` | `.codebuddy\skills\` |
-| Kimi | `%USERPROFILE%\.kimi\skills\yotta-anti-shallow\` | `.kimi\skills\` |
-| Generic AGENTS.md | `%USERPROFILE%\.agents\skills\yotta-anti-shallow\` | `.agents\skills\` |
+On the GitHub repository `YottaMeta/yotta-anti-shallow`, click **Code → Download ZIP**, unzip it and put the `yotta-anti-shallow` folder into the agent's skills directory.
 
-> If Codex's `CODEX_HOME` is set, it overrides the default; the same applies to opencode's `XDG_CONFIG_HOME`. `.agents\skills` is not a universal directory — only OpenCode / Cursor / Cline / Amp / Kimi / Gemini CLI / GitHub Copilot etc. read it; **Claude Code and Codex do not read it by default**. When unsure, use `--dir` or let the agent install it.
+### Method 4: install.sh (multi-agent one-liner script)
 
-> Project-level: run `npx -y @yottameta/yotta-anti-shallow` or `bash install.sh` inside the project to install into the detected project-level directory.
+```text
+bash install.sh --agent <name>   # install to the agent's default user-level directory
+bash install.sh --dir <path>     # install to the given directory
+bash install.sh --list           # list agents -> default directories
+```
 
+> Method 1 uses the npm registry (npmmirror / npmjs) and does not depend on GitHub; Methods 2/3 use GitHub and may fail without a proxy in China.
 ## Upgrade / uninstall
 
-- **Upgrade**: reinstall the latest version to overwrite — `npx -y @yottameta/yotta-anti-shallow -g` or rerun `bash install.sh -g`. Old rule files inside the skill directory are overwritten; other files already in the project are unaffected.
+- **Upgrade**: reinstall the latest version to overwrite — rerun the install command you used (e.g. `npx -y @yottameta/yotta-anti-shallow --agent <name>` or `bash install.sh --agent <name>`). Old files in the skill directory are replaced; other project files are untouched.
 - **Uninstall**: delete the `yotta-anti-shallow` folder under the target agent’s skills directory (see the table above). After uninstalling, this rules engine no longer takes effect.
 
 ## FAQ

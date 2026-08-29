@@ -1,6 +1,6 @@
 {
   "name": "@yottameta/yotta-anti-shallow",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Anti-shallow AI output rules engine: force analyze-first / execute-after / self-check, curbing superficial output. Activates on intent for deep analysis, end-to-end verification, root-cause tracing, rigorous execution, meticulous checking; also applies automatically to any task at L3 (complex) and above.",
   "license": "MIT",
   "keywords": [

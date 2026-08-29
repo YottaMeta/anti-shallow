@@ -44,7 +44,7 @@ AI 在复杂任务上常见的敷衍表现：信息不足时猜测、给"完美�
 | **显式指令优先** | 用户明确说"不用分析"就遵从，并明确标注"规则已临时调整"，不跟用户抬杠 |
 | **边界清晰** | 纯创意 / 闲聊 / 只要结果 / 纯事实检索不强制套用，避免形式化负担 |
 | **轻量零依赖** | 纯规则文本，无 daemon / 无数据库 / 无注入；任何支持 Agent Skills 的智能体即装即用 |
-| **生态分发** | GitHub + npm 双源同步发布；npx / install.sh / 手动复制三种安装方式，覆盖 17+ 类智能体目录 |
+| **生态分发** | GitHub + npm 双源同步发布；npx / git clone / Download ZIP / install.sh 四种安装方式，覆盖 17+ 类智能体目录 |
 
 ## 规则体系（R001-R008）
 
@@ -99,54 +99,42 @@ AI 在复杂任务上常见的敷衍表现：信息不足时猜测、给"完美�
 
 ## 安装
 
-三种方式任选其一，技能文件统一从 **npm** 获取（GitHub 无代理时较慢，npm 可配国内镜像加速）。
+以下四种方式任选，顺序即推荐优先级；技能文件一律从 **npm** 获取（GitHub 无代理较慢，npm 支持镜像）。
 
-### 方式一：npm（推荐，一行安装）
-```bash
-# 国内加速（可选）：npm config set registry https://registry.npmmirror.com
-npx -y @yottameta/yotta-anti-shallow -g
-npx -y @yottameta/yotta-anti-shallow --dir <你的技能目录>   # 任意智能体：指定目录安装
+### 方式一：npm 一行装（推荐）
+
+```text
+# 可选国内加速：npm config set registry https://registry.npmmirror.com
+npx -y @yottameta/yotta-anti-shallow --agent <智能体名称>      # 装到指定智能体默认用户级技能目录
+npx -y @yottameta/yotta-anti-shallow --dir <智能体的技能目录>  # 指到技能目录本身（如 ~/.codex/skills）
 ```
-> 智能体不在预置列表里？用 `--dir` 指定它的 skills 目录，或手动复制（方式三）。`--list` 可查看各智能体对应的默认目录。想手动拿文件也可 `npm pack @yottameta/yotta-anti-shallow` 解包后按方式二/三安装。
 
-### 方式二：install.sh 一键安装
-获取技能文件夹后（`npm pack` 解包或 `git clone`），进入技能文件夹：
-```bash
-bash install.sh -g    # 用户级；bash install.sh --list 查看全部目录
-bash install.sh --agent codex   # 指定智能体（--list 可查看可用项）
-bash install.sh       # 项目级：自动检测已存在的 .claude/.cursor/.codex 等 skills 目录
-bash install.sh --dir /path/to/skills
+- `--agent <name>` 自动装到该智能体默认用户级目录；`--list` 可查看各智能体默认目录。
+- `--dir <路径>` 装到指定的技能目录；未收录的智能体用 `--dir` 指到它的技能目录。
+- npmmirror 未同步新包（404）：加 `--registry=https://registry.npmjs.org/`（国内需代理），或稍等镜像缓存。
+
+### 方式二：git clone（开发者 / 有 git 环境）
+
+```text
+git clone https://github.com/YottaMeta/yotta-anti-shallow.git <智能体的技能目录>/yotta-anti-shallow
 ```
-> 覆盖 17 类智能体，含国内 Trae / Qwen / Comate / CodeBuddy / Kimi。Windows 用户：装有 Git Bash 即可用；否则用方式三手动复制。
 
-### 方式三：手动复制
-把整个 `yotta-anti-shallow` 文件夹复制到目标智能体的 skills 目录。常见位置（用户级；Windows 用 `%USERPROFILE%`，Linux/macOS 用 `~`）：
+### 方式三：GitHub 下载压缩包（手动 / 无 git 环境）
 
-| 智能体 | 用户级目录 | 项目级目录 |
-|---|---|---|
-| Codex | `%USERPROFILE%\.codex\skills\yotta-anti-shallow\` | `.codex\skills\` |
-| Claude Code | `%USERPROFILE%\.claude\skills\yotta-anti-shallow\` | `.claude\skills\` |
-| Cursor | `%USERPROFILE%\.cursor\skills\yotta-anti-shallow\` | `.cursor\skills\` |
-| Windsurf | `%USERPROFILE%\.codeium\windsurf\skills\yotta-anti-shallow\` | `.windsurf\skills\` |
-| opencode | `%USERPROFILE%\.config\opencode\skills\yotta-anti-shallow\` | `.opencode\skills\` |
-| Gemini | `%USERPROFILE%\.gemini\skills\yotta-anti-shallow\` | `.gemini\skills\` |
-| Goose | `%USERPROFILE%\.config\goose\skills\yotta-anti-shallow\` | `.goose\skills\` |
-| Amp | `%USERPROFILE%\.config\agents\skills\yotta-anti-shallow\` | `.agents\skills\` |
-| Kiro | `%USERPROFILE%\.kiro\skills\yotta-anti-shallow\` | `.kiro\skills\` |
-| WorkBuddy | `%USERPROFILE%\.workbuddy\skills\yotta-anti-shallow\` | `.workbuddy\skills\` |
-| Trae Code CLI | `%USERPROFILE%\.traecli\skills\yotta-anti-shallow\` | `.traecli\skills\` |
-| Trae IDE (CN) | `%USERPROFILE%\.trae-cn\skills\yotta-anti-shallow\` | `.trae\skills\` |
-| Qwen Code | `%USERPROFILE%\.qwen\skills\yotta-anti-shallow\` | `.qwen\skills\` |
-| Comate | `%USERPROFILE%\.comate\skills\yotta-anti-shallow\` | `.comate\skills\` |
-| CodeBuddy | `%USERPROFILE%\.codebuddy\skills\yotta-anti-shallow\` | `.codebuddy\skills\` |
-| Kimi | `%USERPROFILE%\.kimi\skills\yotta-anti-shallow\` | `.kimi\skills\` |
-| Generic AGENTS.md | `%USERPROFILE%\.agents\skills\yotta-anti-shallow\` | `.agents\skills\` |
+在 GitHub 仓库 `YottaMeta/yotta-anti-shallow` 点 **Code → Download ZIP**，解压后把 `yotta-anti-shallow` 文件夹放进智能体技能目录。
 
-> 通用约定：`.agents/skills` 并非所有智能体都读取（Claude Code 与 Codex 默认不读），仅为 OpenCode / Cursor / Cline / Amp / Kimi / Gemini CLI 等智能体识别。已修改默认目录的智能体，请用 `--dir` 指定实际路径。
+### 方式四：install.sh（多智能体一键脚本）
 
+```text
+bash install.sh --agent <name>   # 装到指定智能体默认用户级目录
+bash install.sh --dir <path>     # 装到指定目录
+bash install.sh --list           # 列出智能体 -> 默认目录
+```
+
+> 方式一走 npm 源（npmmirror / npmjs），不依赖 GitHub；方式二 / 三走 GitHub，国内无代理可能失败。
 ## 升级 / 卸载
 
-- **升级**：重新安装最新版覆盖即可——`npx -y @yottameta/yotta-anti-shallow -g` 或重跑 `bash install.sh -g`。技能目录内的旧规则文件会被覆盖；不影响项目中已有的其他文件。
+- **升级**：重新安装最新版覆盖即可——重跑你用的安装命令（如 `npx -y @yottameta/yotta-anti-shallow --agent <name>` 或 `bash install.sh --agent <name>`）。技能目录内旧文件会被替换；不影响项目中其他文件。
 - **卸载**：删除目标智能体 skills 目录下的 `yotta-anti-shallow` 文件夹（各智能体目录见上表）即可。卸载后本规则不再生效。
 
 ## 常见问题
